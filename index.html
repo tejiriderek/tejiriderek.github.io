@@ -92,6 +92,49 @@
         0 0 20px #4cc3ff;
 }
 
+            /* slider */
+        /* Make home section relative */
+.home {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background container */
+.home__parallax {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%; /* extra height for parallax movement */
+    z-index: -1;
+}
+
+/* Individual slides */
+.home__slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* parallax effect */
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+/* Active slide */
+.home__slide.active {
+    opacity: 1;
+}
+
+/* Dark overlay for readability */
+.home::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: -1;
+}
+
         </style>
     </head>
     <body>
@@ -150,6 +193,12 @@
         <main class="main">
             <!--==================== HOME ====================-->
             <section class="home section" id="home">
+                <div class="home__parallax">
+                    <div class="home__slide active"></div>
+                    <div class="home__slide"></div>
+                    <div class="home__slide"></div>
+                </div>
+
                 <div data-aos="fade-left" class="home__container container grid">
                     <div class="home__content grid">
                         <div class="home__social">
@@ -1230,9 +1279,61 @@
         duration: 2000
     });
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const slides = document.querySelectorAll(".home__slide");
+
+    const images = [
+        "assets/slider/1.jpg",
+        "assets/slider/2.jpg",
+        "assets/slider/3.jpg",
+        "assets/slider/4.jpg",
+        "assets/slider/5.jpg",
+        "assets/slider/6.jpg",
+        "assets/slider/7.jpg",
+        "assets/slider/8.jpg",
+        "assets/slider/9.jpg",
+        "assets/slider/10.jpg",
+        "assets/slider/11.jpg",
+        "assets/slider/12.jpg",
+        "assets/slider/13.jpg",
+        "assets/slider/14.jpg",
+        "assets/slider/15.jpg",
+        "assets/slider/16.jpg",
+        "assets/slider/17.jpg",
+        "assets/slider/18.jpg",
+        "assets/slider/19.jpg",
+        "assets/slider/20.jpg",
+        "assets/slider/21.jpg",
+        "assets/slider/22.jpg",
+        "assets/slider/23.jpg",
+        "assets/slider/24.jpg",
+        
+    ];
+
+    // Assign images dynamically
+    slides.forEach((slide, index) => {
+        slide.style.backgroundImage = `url(${images[index]})`;
+    });
+
+    let current = 0;
+
+    function changeSlide() {
+        slides[current].classList.remove("active");
+        current = (current + 1) % slides.length;
+        slides[current].classList.add("active");
+    }
+
+    setInterval(changeSlide, 4000); // 4 seconds
+});
+</script>
+
 </body>
 
 </html>
+
 
 
 
