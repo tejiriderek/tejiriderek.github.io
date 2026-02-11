@@ -1328,11 +1328,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setInterval(changeSlide, 4000); // 4 seconds
 });
+
+    // Default to dark if nothing is selected yet
+if (!selectedTheme) {
+  document.body.classList.add(darkTheme);
+  themeButton.classList.add(iconTheme); // make the icon correct
+}
+
 </script>
+
+
 
 </body>
 
 </html>
+
 
 
 
